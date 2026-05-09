@@ -1,0 +1,129 @@
+{
+  "requirements": [
+    {
+      "id": "SYS-REQ-001",
+      "text": "Train control shall maintain safe separation between vehicles in adjacent zones.",
+      "config": "CBTC-Zone-Controller v3.2",
+      "test": "FIT-SEP-014",
+      "status": "Verified"
+    },
+    {
+      "id": "SW-REQ-008",
+      "text": "Vital braking logic shall command emergency braking below the safe speed envelope.",
+      "config": "Vital-Brake-Module v2.1",
+      "test": "FIT-BRK-022",
+      "status": "In Review"
+    },
+    {
+      "id": "HW-REQ-003",
+      "text": "Wayside interface shall support redundant signal input channels.",
+      "config": "Wayside-IO-Unit rev C",
+      "test": "FIT-IO-031",
+      "status": "Failed"
+    },
+    {
+      "id": "OPS-REQ-012",
+      "text": "System headway shall remain under 110 seconds during peak operation.",
+      "config": "Guideway-Database baseline 2026.05",
+      "test": "SIM-HWY-009",
+      "status": "Verified"
+    },
+    {
+      "id": "DOC-REQ-017",
+      "text": "Released software baseline shall include approved release notes and audit evidence.",
+      "config": "Release-Package HR-TOR-24A",
+      "test": "AUD-CM-004",
+      "status": "Not Started"
+    }
+  ],
+  "changes": [
+    {
+      "id": "CHG-104",
+      "title": "Update braking threshold for curve segment C",
+      "priority": "High",
+      "owner": "Systems Design",
+      "requirement": "SW-REQ-008",
+      "status": "In Analysis"
+    },
+    {
+      "id": "DEF-221",
+      "title": "Wayside IO redundancy test failed on nightly build",
+      "priority": "Critical",
+      "owner": "Software Test",
+      "requirement": "HW-REQ-003",
+      "status": "Implemented"
+    },
+    {
+      "id": "CHG-118",
+      "title": "Add audit checklist to release package",
+      "priority": "Medium",
+      "owner": "Configuration Management",
+      "requirement": "DOC-REQ-017",
+      "status": "Approved"
+    }
+  ],
+  "baselines": [
+    {
+      "name": "BL-2026.05-A",
+      "scope": "Guideway database, signal plan, braking model, release notes",
+      "status": "Controlled",
+      "risk": "good"
+    },
+    {
+      "name": "SW-BUILD-4517",
+      "scope": "Vital Brake Module, CBTC Zone Controller, regression evidence",
+      "status": "Pending audit",
+      "risk": "warn"
+    },
+    {
+      "name": "PROC-KIT-19",
+      "scope": "Wayside IO components, supplier cybersecurity package, HSE checklist",
+      "status": "Blocked",
+      "risk": "bad"
+    }
+  ],
+  "testRuns": [
+    {
+      "id": "JENKINS-4517",
+      "suite": "Vital software regression",
+      "passed": 184,
+      "failed": 6
+    },
+    {
+      "id": "JENKINS-4518",
+      "suite": "Guideway simulation fitness",
+      "passed": 76,
+      "failed": 1
+    },
+    {
+      "id": "JENKINS-4519",
+      "suite": "Configuration audit checks",
+      "passed": 42,
+      "failed": 0
+    }
+  ],
+  "zones": {
+    "A": {
+      "title": "Zone A - Terminal approach",
+      "details": "Nominal headway: 105s. Interlocking clear. No active procurement blockers."
+    },
+    "B": {
+      "title": "Zone B - Mainline segment",
+      "details": "Nominal headway: 98s. Baseline aligned with current signal plan."
+    },
+    "C": {
+      "title": "Zone C - Curved guideway",
+      "details": "Braking threshold change under analysis. Linked to CHG-104 and FIT-BRK-022."
+    },
+    "D": {
+      "title": "Zone D - Yard interface",
+      "details": "Crossover coordinates verified. Awaiting documentation audit closure."
+    }
+  },
+  "kpis": [
+    ["Traceability coverage", 92],
+    ["Open PR completeness", 81],
+    ["Baseline audit readiness", 74],
+    ["CI/CD pass rate", 96]
+  ]
+}

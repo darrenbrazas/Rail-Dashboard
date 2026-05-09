@@ -1,0 +1,7 @@
+generated/*.exe
+generated/braking_model
+data/lifecycle.db
+data/test_*.db
+.env
+__pycache__/
+*.pyc

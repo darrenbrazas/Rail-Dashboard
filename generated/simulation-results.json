@@ -1,0 +1,38 @@
+{
+  "summary": "C++ braking model generated from speed, reaction time, deceleration, and zone limits.",
+  "scenarios": [
+    {
+      "id": "SIM-BRK-001",
+      "zone": "A",
+      "speedKmh": 58,
+      "safeLimitMeters": 235,
+      "computedDistanceMeters": 135.41,
+      "result": "PASS"
+    },
+    {
+      "id": "SIM-BRK-002",
+      "zone": "B",
+      "speedKmh": 72.00,
+      "safeLimitMeters": 315.00,
+      "computedDistanceMeters": 211.82,
+      "result": "PASS"
+    },
+    {
+      "id": "SIM-BRK-003",
+      "zone": "C",
+      "speedKmh": 68.00,
+      "safeLimitMeters": 245.00,
+      "computedDistanceMeters": 224.13,
+      "result": "PASS"
+    },
+    {
+      "id": "SIM-BRK-004",
+      "zone": "D",
+      "speedKmh": 42.00,
+      "safeLimitMeters": 145.00,
+      "computedDistanceMeters": 70.71,
+      "result": "PASS"
+    }
+  ],
+  "failedScenarios": 0
+}

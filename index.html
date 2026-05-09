@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rail Lifecycle Control Center</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <aside class="sidebar" aria-label="Main navigation">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true">RL</div>
+        <div>
+          <p class="eyebrow">Portfolio Project</p>
+          <h1>Rail Lifecycle Control Center</h1>
+        </div>
+      </div>
+      <nav class="nav-list">
+        <a href="#overview">Overview</a>
+        <a href="#requirements">Requirements</a>
+        <a href="#changes">Change Control</a>
+        <a href="#baselines">Baselines</a>
+        <a href="#testing">CI/CD Tests</a>
+        <a href="#guideway">Guideway</a>
+      </nav>
+      <div class="profile-box">
+        <p class="eyebrow">Built For</p>
+        <p>Hitachi Rail internships: Configuration Management, Software Analyst, Systems Design, and Procurement analytics.</p>
+      </div>
+    </aside>
+
+    <main>
+      <section id="overview" class="topbar">
+        <div>
+          <p class="eyebrow">Safety-critical rail systems workflow</p>
+          <h2>Configuration, requirements, tests, and project KPIs in one traceable dashboard.</h2>
+        </div>
+        <div class="actions">
+          <span id="jiraStatus" class="integration-pill">Jira: checking</span>
+          <button id="exportReport" type="button">Export report</button>
+          <button id="exportCsv" class="secondary" type="button">Traceability CSV</button>
+          <button id="toggleTheme" class="secondary" type="button" aria-label="Toggle contrast">Contrast</button>
+        </div>
+      </section>
+
+      <section class="metric-grid" aria-label="Key metrics">
+        <article class="metric">
+          <span>Requirements Verified</span>
+          <strong id="verifiedMetric">0%</strong>
+          <small>DOORS-style traceability coverage</small>
+        </article>
+        <article class="metric">
+          <span>Open Change Requests</span>
+          <strong id="openChangesMetric">0</strong>
+          <small>Jira-style workflow queue</small>
+        </article>
+        <article class="metric">
+          <span>Build Health</span>
+          <strong id="buildHealthMetric">0%</strong>
+          <small>Latest CI/CD regression pass rate</small>
+        </article>
+        <article class="metric">
+          <span>Procurement Risk</span>
+          <strong id="procurementMetric">0</strong>
+          <small>Components blocking baseline release</small>
+        </article>
+      </section>
+
+      <section class="workspace">
+        <div class="panel wide" id="requirements">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">DOORS / Polarion concept</p>
+              <h3>Requirements Traceability Matrix</h3>
+            </div>
+            <select id="requirementFilter" aria-label="Filter requirements">
+              <option value="all">All statuses</option>
+              <option value="Verified">Verified</option>
+              <option value="In Review">In Review</option>
+              <option value="Failed">Failed</option>
+              <option value="Not Started">Not Started</option>
+            </select>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Requirement</th>
+                  <th>Config Item</th>
+                  <th>Linked Test</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="requirementsTable"></tbody>
+            </table>
+          </div>
+          <form id="requirementForm" class="entry-form">
+            <h4>Add requirement</h4>
+            <input name="id" placeholder="REQ ID, e.g. SW-REQ-021" required />
+            <input name="text" placeholder="Requirement statement" required />
+            <input name="config" placeholder="Linked configuration item" required />
+            <input name="test" placeholder="Linked test, e.g. FIT-123" required />
+            <select name="status" required>
+              <option>Not Started</option>
+              <option>In Review</option>
+              <option>Verified</option>
+              <option>Failed</option>
+            </select>
+            <button type="submit">Add</button>
+          </form>
+        </div>
+
+        <div class="panel" id="changes">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">Jira concept</p>
+              <h3>Issue & Change Control</h3>
+            </div>
+          </div>
+          <div id="changeBoard" class="change-board"></div>
+          <form id="changeForm" class="entry-form compact-form">
+            <h4>Add change request</h4>
+            <input name="id" placeholder="CHG ID, e.g. CHG-150" required />
+            <input name="title" placeholder="Change title" required />
+            <select name="priority" required>
+              <option>Medium</option>
+              <option>Low</option>
+              <option>High</option>
+              <option>Critical</option>
+            </select>
+            <input name="owner" placeholder="Owner/team" required />
+            <select name="requirement" id="changeRequirementSelect" required></select>
+            <select name="status" required>
+              <option>Open</option>
+              <option>In Analysis</option>
+              <option>Approved</option>
+              <option>Implemented</option>
+              <option>Verified</option>
+              <option>Closed</option>
+            </select>
+            <button type="submit">Add</button>
+          </form>
+        </div>
+
+        <div class="panel" id="baselines">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">Configuration management</p>
+              <h3>Controlled Baselines</h3>
+            </div>
+          </div>
+          <div id="baselineList" class="baseline-list"></div>
+        </div>
+
+        <div class="panel" id="testing">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">Software Analyst workflow</p>
+              <h3>CI/CD Fitness Testing</h3>
+            </div>
+          </div>
+          <div id="testRuns" class="test-runs"></div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">C++ systems model</p>
+              <h3>Braking Simulation Evidence</h3>
+            </div>
+          </div>
+          <p id="simulationSummary" class="summary-text">Loading simulation evidence...</p>
+          <div id="simulationRuns" class="test-runs"></div>
+        </div>
+
+        <div class="panel wide" id="guideway">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">Systems design concept</p>
+              <h3>Guideway & Train Control Zones</h3>
+            </div>
+          </div>
+          <div class="guideway-layout">
+            <div class="track-map" aria-label="Guideway segment map">
+              <div class="track-line"></div>
+              <button class="station active" data-zone="A">Zone A</button>
+              <button class="station" data-zone="B">Zone B</button>
+              <button class="station risk" data-zone="C">Zone C</button>
+              <button class="station" data-zone="D">Zone D</button>
+            </div>
+            <div id="zoneDetails" class="zone-details"></div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">Management reporting</p>
+              <h3>KPI Snapshot</h3>
+            </div>
+          </div>
+          <div class="bars" id="kpiBars"></div>
+        </div>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
