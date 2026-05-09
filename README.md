@@ -1,21 +1,9 @@
 # Rail Lifecycle Control Center
 
-A technical portfolio project inspired by Hitachi Rail internship responsibilities in configuration management, software analysis, systems design, and procurement analytics.
-
 The project demonstrates a rail engineering lifecycle workflow: requirements are traced to configuration items and tests, change requests are tracked through a Jira-ready workflow, controlled baselines are monitored, CI/CD-style evidence is generated, and a C++ braking simulation feeds results into a Python-backed dashboard.
 
 Current integration status: this version includes a Jira Cloud integration layer with safe dry-run mode, local SQLite persistence, and CSV export for DOORS-compatible requirements exchange. Live Jira issue creation is enabled by adding your own Atlassian credentials in `.env`. Real IBM DOORS / DOORS Next integration still requires access to an IBM Engineering Lifecycle Management server.
 
-## Why This Project Fits Hitachi Rail
-
-This project maps to repeated themes in the Hitachi Rail postings:
-
-- **Configuration Management:** controlled baselines, configuration items, release evidence, and audit readiness.
-- **DOORS / Polarion-style requirements:** system requirements linked to configuration items and verification tests, with CSV export for requirements exchange.
-- **Jira-ready change control:** issue tickets, change requests, owners, priorities, workflow status, linked requirements, and a Jira Cloud REST API adapter with dry-run mode.
-- **Software Analyst work:** Python API, SQLite persistence, JSON data, CI/CD-style regression metrics, automated tests, and report export.
-- **Systems Design work:** guideway zones, braking/headway context, and a C++ safety-model simulation.
-- **Procurement analytics:** component readiness, blocked procurement kits, PR-style KPI reporting, and management dashboards.
 
 ## Tech Stack
 
