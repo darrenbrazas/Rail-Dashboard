@@ -130,27 +130,6 @@ Traceability CSV:
 http://127.0.0.1:8080/api/export/traceability.csv
 ```
 
-## Suggested Resume Bullet
-
-Built a rail lifecycle management system using Python, SQLite, C++, JavaScript, and JSON to support DOORS-compatible requirements export, Jira-ready change control with a Jira Cloud REST API adapter, configuration baselines, CI/CD test metrics, braking simulation evidence, guideway data, CSV reporting, and KPI dashboards for safety-critical software workflows.
-
-## Suggested Interview Explanation
-
-I noticed that Hitachi Rail's internship postings repeatedly mention configuration management, requirements traceability, CI/CD testing, dashboards, documentation, issue tracking, systems design, and cross-functional engineering workflows. I built this project to show both the workflow and the technical side: a Python API persists lifecycle data in SQLite, a C++ program generates braking simulation evidence, automated tests validate traceability rules, and the dashboard presents the data for engineering and management review. The Jira adapter supports dry-run mode by default and can create live Jira Cloud issues when credentials are configured; requirements can be exported in a DOORS-compatible CSV format.
-
-## Manual Steps For You
-
-1. Run the pipeline command above.
-2. Start the server with `python backend/server.py`.
-3. Open the dashboard at `http://127.0.0.1:8080/index.html`.
-4. Add one sample requirement and one change request in the dashboard.
-5. Click `Sync Jira` on a change request. In dry-run mode, it will generate a Jira-style key without using credentials.
-6. Export the traceability CSV and report.
-7. Take screenshots for your GitHub README, portfolio, or application.
-8. Create a GitHub repository and push the project.
-9. Add the resume bullet only after you can explain the project clearly.
-10. Optional but recommended: record a short demo video showing the dashboard, API endpoint, C++ simulation output, test run, and Jira dry-run sync.
-
 ## Project Structure
 
 ```text
